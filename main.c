@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "sokoban.h"
+#include "pileGrille.h"
 
 int main(int argc, char ** argv)
 {
@@ -9,6 +10,7 @@ int main(int argc, char ** argv)
     Boolean encore = true;
     char commande[MAXCOMMANDE+1];
     Position position;
+    List history = NULL;
     Grille g = initGrille("grille1.sok");
     Grille init = copieGrille(g);
     position = getSokoban(g);
@@ -19,6 +21,7 @@ int main(int argc, char ** argv)
         exit(1);
     }
     nouveauJeu(g);
+    push(&history, init, position);
     while (encore == true)
     {
         i = 0;
@@ -29,12 +32,13 @@ int main(int argc, char ** argv)
         {
             switch (commande[i])
             {
-                case HAUT    : position = joue(init, HAUT, position, g); break;
-                case BAS     : position = joue(init, BAS, position, g); break;
-                case GAUCHE  : position = joue(init, GAUCHE, position, g); break;
-                case DROITE  : position = joue(init, DROITE, position, g); break;
+                case HAUT    : position = joue(init, HAUT, position, g); push(&history, init, position); break;
+                case BAS     : position = joue(init, BAS, position, g); push(&history, init, position); break;
+                case GAUCHE  : position = joue(init, GAUCHE, position, g); push(&history, init, position); break;
+                case DROITE  : position = joue(init, DROITE, position, g); push(&history, init, position); break;
                 case AIDE    : aide(); break;
                 case QUITTER : encore = false; break;
+                case UNDO    : if((history->next)!= NULL){pop(&history); init = copieGrille(history->grille); position = history->position;}else{printf("Retour impossible\n");}; break;
                 default: printf("Commande inconnue\n"); break;
             }
             i++;

@@ -2,9 +2,9 @@ CC=gcc
 CFLAGS=-Wall -ansi -pedantic
 LDFLAGS=
 EXEC=sokoban
-BIN=sokoban.o main.o
-SRC=sokoban.c main.c
-HEAD=sokoban.h
+BIN=sokoban.o pileGrille.o main.o
+SRC=sokoban.c pileGrille.c main.c
+HEAD=sokoban.h pileGrille.h
  
 all: $(EXEC)
  

@@ -10,7 +10,7 @@
 
 typedef enum {false, true} Boolean;
 typedef enum {MUR = '#', CAISSE = 'O', CIBLE = 'o', SOKOBAN = 'S', VIDE = '.'} Symbole;
-typedef enum {HAUT = 'h', BAS = 'b', GAUCHE = 'g', DROITE = 'd', AIDE = 'a', QUITTER = 'q'} Commande;
+typedef enum {HAUT = 'h', BAS = 'b', GAUCHE = 'g', DROITE = 'd', AIDE = 'a', QUITTER = 'q', UNDO = 'u'} Commande;
 typedef enum {NO_SOKOBAN, NO_GRILLE, NO_CAISSE, NO_EQUAL} CodeErreur;
 typedef char* Ligne;
 typedef struct _grille{
@@ -39,4 +39,5 @@ Position joue(Grille, Commande, Position, Grille);
 Boolean gagne(Grille, Position, Grille);
 Grille creerGrille(int, int);
 Grille copieGrille(Grille);
+
 #endif
