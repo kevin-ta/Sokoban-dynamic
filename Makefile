@@ -18,10 +18,10 @@ clean:
 	rm -f *.o *~ 2> /dev/null
  
 clear: clean
-	rm -f $(EXEC) $(USER)_sokoban.tgz 2> /dev/null
+	rm -f $(EXEC) $(USER)_sokoban.tar.gz 2> /dev/null
  
 zip: clear
 	mkdir -p $(USER)_sokoban
-	cp Makefile *.c *.h *.sok $(USER)_sokoban
-	tar czf $(USER)_sokoban.tgz $(USER)_sokoban
+	cp Makefile *.c *.h *.sok *.pdf $(USER)_sokoban
+	tar zcvf $(USER)_sokoban.tar.gz $(USER)_sokoban
 	rm -rf $(USER)_sokoban
